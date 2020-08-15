@@ -1,0 +1,51 @@
+.cocktail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 150px;
+}
+
+.cocktail {
+  min-width: 80vw;
+}
+
+.cocktail-image {
+  padding: 10px 20px;
+}
+
+.cocktail-info {
+  padding: 30px;
+  display: flex;
+  margin: 10px;
+}
+
+.cocktail-copy {
+  padding: 10px 20px;
+
+  .detail-name {
+    font-weight: 700;
+    font-size: 2rem;
+  }
+}
+
+.ingredient-container {
+  display: flex;
+  margin: 15px 0;
+  .ingredient-list,
+  .measurement-list {
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+    padding: 0 15px;
+  }
+}
+
+img.detail-img {
+  height: 250px;
+}
+
+.recipe {
+  p {
+    padding: 0 15px;
+  }
+}

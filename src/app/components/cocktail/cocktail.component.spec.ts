@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CocktailComponent } from './cocktail.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxsModule } from '@ngxs/store';
+import { CocktailsState } from 'src/app/state/cocktail.state';
 
 describe('CocktailComponent', () => {
   let component: CocktailComponent;
@@ -8,9 +12,13 @@ describe('CocktailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CocktailComponent ]
-    })
-    .compileComponents();
+      declarations: [CocktailComponent],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        NgxsModule.forRoot([CocktailsState]),
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

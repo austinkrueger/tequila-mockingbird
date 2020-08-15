@@ -1,1 +1,18 @@
-<p>landing works!</p>
+<div class="main-container">
+  <div class="hero">
+    <h1 class="title">Tequila Mockingbird</h1>
+    <h2 class="tagline">
+      This app was created to view various cocktails and their recipes. Data
+      provided by <a href="https://www.thecocktaildb.com/">TheCocktailDB</a>.
+    </h2>
+    <small>(Also, who doesn't love a good pun?)</small>
+    <div class="search">
+      <mat-form-field class="main-search">
+        <input matInput type="text" placeholder="Search for a cocktail" />
+      </mat-form-field>
+      <button mat-flat-button color="primary" (click)="searchCocktails()">
+        Search
+      </button>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,11 @@ import { HttpErrorInterceptor } from './services/http-error.interceptor';
 import { MaterialModule } from './shared/material/material.module';
 import { LandingComponent } from './components/landing/landing.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import { NgxsModule } from '@ngxs/store';
+import { environment } from '../environments/environment';
+import { CocktailsState } from './state/cocktail.state';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     CocktailComponent,
     LandingComponent,
     NotFoundComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +36,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    FormsModule,
+    NgxsModule.forRoot([CocktailsState], {
+      developmentMode: !environment.production,
+    }),
   ],
   providers: [
     {

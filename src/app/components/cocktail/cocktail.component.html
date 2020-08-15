@@ -1,1 +1,49 @@
-<p>cocktail works!</p>
+<div class="cocktail-container">
+  <ng-container *ngIf="cocktail$ | async as drink">
+    <ng-container *ngIf="drink.cocktail">
+      <mat-card class="cocktail">
+        <div class="cocktail-actions">
+          <a href="javascript:void(0);" (click)="returnToList()"
+            >Return to List</a
+          >
+        </div>
+        <div class="cocktail-info">
+          <div class="cocktail-image">
+            <img
+              class="detail-img"
+              [src]="drink.cocktail.strDrinkThumb"
+              [alt]="drink.cocktail.strDrink"
+            />
+          </div>
+          <div class="cocktail-copy">
+            <h1 class="detail-name">{{ drink.cocktail.strDrink }}</h1>
+            <hr />
+            <div class="ingredients">
+              <h2 class="subhead">Ingredients</h2>
+              <div class="ingredient-container">
+                <div class="ingredient-list">
+                  <span
+                    *ngFor="let ingredient of getIngredients(drink.cocktail)"
+                    >{{ ingredient }}</span
+                  >
+                </div>
+                <div class="measurement-list">
+                  <span
+                    *ngFor="let measurement of getMeasurements(drink.cocktail)"
+                    >{{ measurement }}</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="recipe">
+              <h2 class="subhead">Instructions</h2>
+              <p>{{ drink.cocktail.strInstructions }}</p>
+              <h2 class="subhead">Serving</h2>
+              <p>Serve in a {{ drink.cocktail.strGlass }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </ng-container>
+  </ng-container>
+</div>

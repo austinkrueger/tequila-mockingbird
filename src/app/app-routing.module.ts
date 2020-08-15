@@ -5,7 +5,7 @@ import { CocktailComponent } from './components/cocktail/cocktail.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { LandingComponent } from './components/landing/landing.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'cocktails', component: CocktailListComponent },
   { path: 'cocktails/:id', component: CocktailComponent },

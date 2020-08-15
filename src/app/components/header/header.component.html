@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <img
+    class="logo"
+    src="../../../assets/Mockingbird-silhouette.svg"
+    (click)="returnHome()"
+  />
+  <span class="fill-space"></span>
+  <span class="action-span">
+    <button mat-button class="list-button" (click)="cocktailList()">
+      Cocktail List
+    </button>
+    <button mat-button class="random-button" (click)="randomRecipe()">
+      Random Recipe
+    </button>
+  </span>
+</mat-toolbar>
