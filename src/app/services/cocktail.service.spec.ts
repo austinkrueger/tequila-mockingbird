@@ -3,7 +3,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { CocktailService } from './cocktail.service';
 import { NgxsModule } from '@ngxs/store';

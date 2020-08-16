@@ -3,7 +3,7 @@ import { Store, NgxsModule } from '@ngxs/store';
 import { FiltersState } from './filter.state';
 import { CocktailsState } from './cocktail.state';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Populate, SetCurrent } from './cocktail.action';
+import { SetCurrent } from './cocktail.action';
 
 describe('FilterState', () => {
   let store: Store;
