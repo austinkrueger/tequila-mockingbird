@@ -31,7 +31,6 @@ export class CocktailComponent implements OnInit, OnDestroy {
           cocktailDataSub = this.cocktailService
             .getCocktailDetails(cocktailId)
             .subscribe((cocktailData) => {
-              console.log(cocktailData);
               this.store.dispatch(new SetCurrent(cocktailData.drinks[0]));
             });
         }

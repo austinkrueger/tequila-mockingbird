@@ -1,0 +1,93 @@
+<div class="search-container">
+  <div class="filter-container">
+    <div class="search">
+      <mat-form-field class="main-search">
+        <input
+          matInput
+          type="text"
+          [formControl]="searchTerm"
+          placeholder="Search for a cocktail"
+          (keyup.enter)="searchCocktails()"
+        />
+      </mat-form-field>
+      <div>
+        <button
+          mat-flat-button
+          color="primary"
+          class="search-button"
+          (click)="searchCocktails()"
+        >
+          Search
+        </button>
+        <button
+          mat-flat-button
+          class="clear-button"
+          (click)="clearAllFilters()"
+        >
+          Clear All Filters
+        </button>
+      </div>
+    </div>
+    <div class="filters">
+      <mat-form-field>
+        <mat-label>Filter by Category</mat-label>
+        <mat-select
+          (selectionChange)="filterCategeory($event)"
+          [formControl]="categorySelection"
+        >
+          <mat-option
+            *ngFor="let category of categoryList$ | async"
+            [value]="category.strCategory"
+          >
+            {{ category.strCategory }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Filter by Ingredient</mat-label>
+        <mat-select
+          (selectionChange)="filterIngredient($event)"
+          [formControl]="ingredientSelection"
+        >
+          <mat-option
+            *ngFor="let ingredient of ingredientList$ | async"
+            [value]="ingredient.strIngredient1"
+          >
+            {{ ingredient.strIngredient1 }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Filter by Alcoholic</mat-label>
+        <mat-select
+          (selectionChange)="filterAlcoholic($event)"
+          [formControl]="alcoholicSelection"
+        >
+          <mat-option
+            *ngFor="let alcoholic of alcoholicList$ | async"
+            [value]="alcoholic.strAlcoholic"
+          >
+            {{ alcoholic.strAlcoholic }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Filter by Glass</mat-label>
+        <mat-select
+          (selectionChange)="filterGlass($event)"
+          [formControl]="glassSelection"
+        >
+          <mat-option
+            *ngFor="let glass of glassList$ | async"
+            [value]="glass.strGlass"
+          >
+            {{ glass.strGlass }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

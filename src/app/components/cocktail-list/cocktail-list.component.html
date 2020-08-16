@@ -1,24 +1,13 @@
-<div class="action-container">
+<app-search></app-search>
+<div>
+  View:
+  <button mat-button>Card List</button>
+  <button mat-button>Table</button>
+</div>
+<div class="paginate-container">
   <button mat-button class="previous" (click)="previousPage()">Previous</button>
-  <div class="filter-container">
-    <div class="search">
-      <mat-form-field class="main-search">
-        <input matInput type="text" placeholder="Search for a cocktail" />
-      </mat-form-field>
-      <button
-        mat-flat-button
-        color="primary"
-        class="search-button"
-        (click)="searchCocktails()"
-      >
-        Search
-      </button>
-    </div>
-    <div class="filters"></div>
-  </div>
   <button mat-button class="next" (click)="nextPage()">Next</button>
 </div>
-
 <div class="list-container">
   <div class="cocktail-list">
     <ng-container *ngFor="let drink of cocktailList$ | async">
@@ -40,4 +29,8 @@
       </mat-card>
     </ng-container>
   </div>
+</div>
+<div class="paginate-container">
+  <button mat-button class="previous" (click)="previousPage()">Previous</button>
+  <button mat-button class="next" (click)="nextPage()">Next</button>
 </div>

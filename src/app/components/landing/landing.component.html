@@ -8,7 +8,13 @@
     <small>(Also, who doesn't love a good pun?)</small>
     <div class="search">
       <mat-form-field class="main-search">
-        <input matInput type="text" placeholder="Search for a cocktail" />
+        <input
+          matInput
+          type="text"
+          placeholder="Search for a cocktail"
+          [formControl]="searchTerm"
+          (keyup.enter)="searchCocktails()"
+        />
       </mat-form-field>
       <button mat-flat-button color="primary" (click)="searchCocktails()">
         Search

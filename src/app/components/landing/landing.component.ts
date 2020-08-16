@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { Search } from 'src/app/state/cocktail.actions';
+import { Router } from '@angular/router';
+import { SetSearchTerm } from 'src/app/state/filter.action';
 
 @Component({
   selector: 'app-landing',
@@ -6,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  constructor() {}
+  searchTerm = new FormControl();
+  constructor(private store: Store, private router: Router) {}
 
   ngOnInit(): void {}
 
-  searchCocktails(): void {}
+  searchCocktails(): void {
+    this.store.dispatch(new Search(this.searchTerm.value));
+    this.store.dispatch(new SetSearchTerm(this.searchTerm.value));
+    this.router.navigate(['cocktails']);
+  }
 }

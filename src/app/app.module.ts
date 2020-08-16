@@ -14,11 +14,13 @@ import {
 import { HttpErrorInterceptor } from './services/http-error.interceptor';
 import { MaterialModule } from './shared/material/material.module';
 import { LandingComponent } from './components/landing/landing.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from '../environments/environment';
 import { CocktailsState } from './state/cocktail.state';
+import { SearchComponent } from './components/search/search.component';
+import { FiltersState } from './state/filter.state';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { CocktailsState } from './state/cocktail.state';
     CocktailComponent,
     LandingComponent,
     HeaderComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { CocktailsState } from './state/cocktail.state';
     HttpClientModule,
     MaterialModule,
     FormsModule,
-    NgxsModule.forRoot([CocktailsState], {
+    ReactiveFormsModule,
+    NgxsModule.forRoot([CocktailsState, FiltersState], {
       developmentMode: !environment.production,
     }),
   ],

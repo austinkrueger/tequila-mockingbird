@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { Store, Select } from '@ngxs/store';
-import { Populate, SetCurrent } from 'src/app/state/cocktail.actions';
+import { Populate, SetCurrent, Paginate } from 'src/app/state/cocktail.actions';
 import { Observable } from 'rxjs';
 import { Cocktail } from 'src/app/models/cocktail.model';
 import { CocktailsState } from 'src/app/state/cocktail.state';
@@ -14,8 +14,11 @@ import { Router } from '@angular/router';
 })
 export class CocktailListComponent implements OnInit {
   @Select(CocktailsState.getCocktails) cocktailList$: Observable<Cocktail[]>;
+  currIdx = 0;
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private router: Router) {
+    this.currIdx = this.store.selectSnapshot(CocktailsState.getCurrentIndex);
+  }
 
   ngOnInit(): void {
     this.store.dispatch(new Populate({}));
@@ -26,9 +29,13 @@ export class CocktailListComponent implements OnInit {
     this.store.dispatch(new SetCurrent(cocktail));
   }
 
-  searchCocktails(): void {}
+  previousPage(): void {
+    this.currIdx -= 1;
+    this.store.dispatch(new Paginate(this.currIdx));
+  }
 
-  previousPage(): void {}
-
-  nextPage(): void {}
+  nextPage(): void {
+    this.currIdx += 1;
+    this.store.dispatch(new Paginate(this.currIdx));
+  }
 }

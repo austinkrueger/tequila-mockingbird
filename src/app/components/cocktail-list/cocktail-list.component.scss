@@ -11,24 +11,7 @@
   flex-wrap: wrap;
   width: 100vw;
   .cocktail-card {
-    width: 300px;
+    width: 200px;
     margin: 10px;
-
-    &:hover {
-    }
-  }
-}
-
-.action-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 60px 20px;
-
-  .filter-container {
-    // width: 50%;
-    .search {
-      width: 100%;
-    }
   }
 }

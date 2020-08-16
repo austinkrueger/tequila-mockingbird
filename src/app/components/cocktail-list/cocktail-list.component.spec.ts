@@ -40,18 +40,6 @@ describe('CocktailListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a search field', () => {
-    const element: HTMLElement = fixture.nativeElement;
-    const searchField = element.querySelector('input');
-    expect(searchField.placeholder).toEqual('Search for a cocktail');
-  });
-
-  it('should have a search button', () => {
-    const element: HTMLElement = fixture.nativeElement;
-    const button = element.querySelector('.search-button');
-    expect(button.innerHTML.trim()).toEqual('Search');
-  });
-
   it('should have a previous button', () => {
     const element: HTMLElement = fixture.nativeElement;
     const button = element.querySelector('.previous');
@@ -62,23 +50,6 @@ describe('CocktailListComponent', () => {
     const element: HTMLElement = fixture.nativeElement;
     const button = element.querySelector('.next');
     expect(button.innerHTML.trim()).toEqual('Next');
-  });
-
-  // it('should have a category dropdown', () => {});
-
-  // it('should have an ingredient dropdown', () => {});
-
-  // it('should have an alcoholic dropdown', () => {});
-
-  // it('should have a glass dropdown', () => {});
-
-  it('should search for cocktails by name', () => {
-    spyOn(component, 'searchCocktails');
-    const button = fixture.debugElement.query(By.css('.search-button'))
-      .nativeElement;
-    button.click();
-    fixture.detectChanges();
-    expect(component.searchCocktails).toHaveBeenCalled();
   });
 
   it('should paginate forward', () => {
