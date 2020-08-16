@@ -25,4 +25,10 @@ export class CocktailListComponent implements OnInit {
     this.router.navigate(['cocktails', cocktail.idDrink]);
     this.store.dispatch(new SetCurrent(cocktail));
   }
+
+  searchCocktails(): void {}
+
+  previousPage(): void {}
+
+  nextPage(): void {}
 }

@@ -31,6 +31,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
           cocktailDataSub = this.cocktailService
             .getCocktailDetails(cocktailId)
             .subscribe((cocktailData) => {
+              console.log(cocktailData);
               this.store.dispatch(new SetCurrent(cocktailData.drinks[0]));
             });
         }
@@ -50,7 +51,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
     const drinkKeys = Object.getOwnPropertyNames(drink);
     const ingredientList = [];
     drinkKeys.map((key) => {
-      if (key.startsWith('strIngredient')) {
+      if (key.startsWith('strIngredient') && drink[key]) {
         ingredientList.push(drink[key]);
       }
     });
@@ -61,7 +62,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
     const drinkKeys = Object.getOwnPropertyNames(drink);
     const measurementList = [];
     drinkKeys.map((key) => {
-      if (key.startsWith('strMeasure')) {
+      if (key.startsWith('strMeasure') && drink[key]) {
         measurementList.push(drink[key]);
       }
     });
