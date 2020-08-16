@@ -1,6 +1,16 @@
 # TequilaMockingbird
 
+Had a lot of fun with this project!
+
+- Using Angular 9 (as mentioned below), Angular Material, and NGXS for state management throughout.
+- Data provided by [TheCocktailDB](https://www.thecocktaildb.com/).
+- Name inspiration from [Tequila Mockingbird: Cocktails with a Literary Twist](https://www.runningpress.com/titles/tim-federle/tequila-mockingbird/9780762448654/) book by Tim Federle.
+- Setup should be straightforward as listed below, might need an `npm install` before running `ng serve` to bring the project up.
+- Code coverage right around ~70% last time I ran `ng test --no-watch --code-coverage` in my local environment.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.3.
+
+### More Angular default README below
 
 ## Development server
 
