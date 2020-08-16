@@ -8,6 +8,7 @@ import { CocktailsState } from 'src/app/state/cocktail.state';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { routes } from 'src/app/app-routing.module';
+import { FiltersState } from 'src/app/state/filter.state';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -19,7 +20,7 @@ describe('HeaderComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         RouterModule.forRoot(routes),
-        NgxsModule.forRoot([CocktailsState]),
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
       ],
       declarations: [HeaderComponent],
     }).compileComponents();

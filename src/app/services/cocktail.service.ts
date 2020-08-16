@@ -62,10 +62,14 @@ export class CocktailService {
   }
 
   searchCocktails(searchTerm: string): Observable<any> {
-    const searchType = searchTerm.length === 1 ? 'f' : 's';
-    return this.http.get(
-      `${this.baseUri}/search.php?${searchType}=${searchTerm}`
-    );
+    if (searchTerm) {
+      const searchType = searchTerm.length === 1 ? 'f' : 's';
+      return this.http.get(
+        `${this.baseUri}/search.php?${searchType}=${searchTerm}`
+      );
+    } else {
+      return this.http.get(`${this.baseUri}/search.php?f=${this.pages[0]}`);
+    }
   }
 
   filterByCategory(

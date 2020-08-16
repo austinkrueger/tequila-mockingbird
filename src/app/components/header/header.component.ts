@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
 
   randomRecipe(): void {
     this.cocktailService.getRandomCocktail().subscribe((cocktail) => {
+      console.log(cocktail);
       this.router.navigate(['cocktails', cocktail.drinks[0].idDrink]);
       this.store.dispatch(new SetCurrent(cocktail.drinks[0]));
     });

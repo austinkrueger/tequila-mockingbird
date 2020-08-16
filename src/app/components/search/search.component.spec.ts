@@ -6,6 +6,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgxsModule } from '@ngxs/store';
 import { CocktailsState } from 'src/app/state/cocktail.state';
 import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FiltersState } from 'src/app/state/filter.state';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -17,7 +19,8 @@ describe('SearchComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        NgxsModule.forRoot([CocktailsState]),
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
+        ReactiveFormsModule,
       ],
     }).compileComponents();
   }));

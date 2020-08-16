@@ -42,3 +42,8 @@ export class SetGlassFilter {
   static readonly type = '[Filter] SetGlassFilter';
   constructor(public term: string) {}
 }
+
+export class SetCurrListView {
+  static readonly type = '[Filter] SetCurrListView';
+  constructor(public view: string) {}
+}

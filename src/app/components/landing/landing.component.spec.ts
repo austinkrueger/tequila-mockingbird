@@ -2,6 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingComponent } from './landing.component';
 import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxsModule } from '@ngxs/store';
+import { CocktailsState } from 'src/app/state/cocktail.state';
+import { FiltersState } from 'src/app/state/filter.state';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -10,6 +16,12 @@ describe('LandingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LandingComponent],
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
+      ],
     }).compileComponents();
   }));
 

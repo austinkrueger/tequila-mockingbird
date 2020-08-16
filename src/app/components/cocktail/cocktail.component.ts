@@ -23,7 +23,7 @@ export class CocktailComponent implements OnInit, OnDestroy {
   ) {
     let cocktailDataSub = new Subscription();
     const cocktailSub: Subscription = this.cocktail$.subscribe((cocktail) => {
-      if (cocktail.idDrink === '') {
+      if (cocktail.idDrink === '' || !cocktail.strCategory) {
         const cocktailId = this.activatedRoute.snapshot.params.id
           ? this.activatedRoute.snapshot.params.id
           : undefined;
@@ -34,8 +34,8 @@ export class CocktailComponent implements OnInit, OnDestroy {
               this.store.dispatch(new SetCurrent(cocktailData.drinks[0]));
             });
         }
+        this._subscriptions.add(cocktailDataSub);
       }
-      this._subscriptions.add(cocktailDataSub);
     });
     this._subscriptions.add(cocktailSub);
   }

@@ -3,9 +3,9 @@
     <ng-container *ngIf="drink.cocktail">
       <mat-card class="cocktail">
         <div class="cocktail-actions">
-          <a href="javascript:void(0);" (click)="returnToList()"
-            >Return to List</a
-          >
+          <button mat-button (click)="returnToList()">
+            <mat-icon>keyboard_arrow_left</mat-icon> Return to List
+          </button>
         </div>
         <div class="cocktail-info">
           <div class="cocktail-image">

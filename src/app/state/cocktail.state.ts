@@ -58,14 +58,13 @@ export class CocktailsState {
     // initial list state
     this.cocktailService.paginateCocktails(0).subscribe((cocktails) => {
       ctx.patchState({
-        cocktailList: cocktails.drinks,
+        cocktailList: cocktails.drinks ? cocktails.drinks : [],
       });
     });
   }
 
   @Action(PopulateWithFilter)
   populateWithFilter(ctx: StateContext<CocktailState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService
       .filterByCategory(
         payload.filters.filterType,
@@ -73,39 +72,36 @@ export class CocktailsState {
       )
       .subscribe((cocktails) => {
         ctx.patchState({
-          cocktailList: cocktails.drinks,
+          cocktailList: cocktails.drinks ? cocktails.drinks : [],
         });
       });
   }
 
   @Action(Paginate)
   paginate(ctx: StateContext<CocktailState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService
       .paginateCocktails(payload.idx)
       .subscribe((cocktails) => {
         ctx.patchState({
           currentPageIdx: payload.idx,
-          cocktailList: cocktails.drinks,
+          cocktailList: cocktails.drinks ? cocktails.drinks : [],
         });
       });
   }
 
   @Action(Search)
   search(ctx: StateContext<CocktailState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService
       .searchCocktails(payload.term)
       .subscribe((cocktails) => {
         ctx.patchState({
-          cocktailList: cocktails.drinks,
+          cocktailList: cocktails.drinks ? cocktails.drinks : [],
         });
       });
   }
 
   @Action(SetCurrent)
   setCurrent(ctx: StateContext<CocktailState>, cocktail: Cocktail) {
-    const state = ctx.getState();
     ctx.patchState({
       currentCocktail: cocktail,
     });

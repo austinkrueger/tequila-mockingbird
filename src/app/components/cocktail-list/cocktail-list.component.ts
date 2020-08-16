@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Cocktail } from 'src/app/models/cocktail.model';
 import { CocktailsState } from 'src/app/state/cocktail.state';
 import { Router } from '@angular/router';
+import { FiltersState } from 'src/app/state/filter.state';
+import { SetCurrListView } from 'src/app/state/filter.action';
 
 @Component({
   selector: 'app-cocktail-list',
@@ -14,7 +16,9 @@ import { Router } from '@angular/router';
 })
 export class CocktailListComponent implements OnInit {
   @Select(CocktailsState.getCocktails) cocktailList$: Observable<Cocktail[]>;
+  displayedColumns: string[] = ['img', 'name', 'category', 'alcoholic', 'view'];
   currIdx = 0;
+  @Select(FiltersState.getCurrListView) currListView$: Observable<string>;
 
   constructor(private store: Store, private router: Router) {
     this.currIdx = this.store.selectSnapshot(CocktailsState.getCurrentIndex);
@@ -37,5 +41,9 @@ export class CocktailListComponent implements OnInit {
   nextPage(): void {
     this.currIdx += 1;
     this.store.dispatch(new Paginate(this.currIdx));
+  }
+
+  setCurrentListView(view: string): void {
+    this.store.dispatch(new SetCurrListView(view));
   }
 }

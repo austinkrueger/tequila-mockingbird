@@ -10,13 +10,15 @@
       <mat-form-field class="main-search">
         <input
           matInput
+          ngDefaultControl
+          name="search"
           type="text"
           placeholder="Search for a cocktail"
           [formControl]="searchTerm"
           (keyup.enter)="searchCocktails()"
         />
       </mat-form-field>
-      <button mat-flat-button color="primary" (click)="searchCocktails()">
+      <button mat-button color="primary" (click)="searchCocktails()">
         Search
       </button>
     </div>

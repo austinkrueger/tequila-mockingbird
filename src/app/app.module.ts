@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { CocktailsState } from './state/cocktail.state';
 import { SearchComponent } from './components/search/search.component';
 import { FiltersState } from './state/filter.state';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FiltersState } from './state/filter.state';
     LandingComponent,
     HeaderComponent,
     SearchComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,

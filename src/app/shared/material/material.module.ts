@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [],
@@ -19,6 +22,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatDividerModule,
     MatSelectModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatIconModule,
   ],
   exports: [
     MatCardModule,
@@ -28,6 +34,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatDividerModule,
     MatSelectModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatIconModule,
   ],
 })
 export class MaterialModule {}

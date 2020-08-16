@@ -11,6 +11,7 @@ import {
   SetIngredientFilter,
   SetAlcoholicFilter,
   SetGlassFilter,
+  SetCurrListView,
 } from './filter.action';
 
 export interface FilterState {
@@ -23,6 +24,7 @@ export interface FilterState {
   alcoholicFilter: string;
   glassFilter: string;
   searchTerm: string;
+  currListView: string;
 }
 
 @State<FilterState>({
@@ -32,11 +34,12 @@ export interface FilterState {
     ingredientList: [],
     alcoholicList: [],
     glassList: [],
-    categoryFilter: '',
-    ingredientFilter: '',
-    alcoholicFilter: '',
-    glassFilter: '',
-    searchTerm: '',
+    categoryFilter: null,
+    ingredientFilter: null,
+    alcoholicFilter: null,
+    glassFilter: null,
+    searchTerm: null,
+    currListView: 'cardView',
   },
 })
 @Injectable()
@@ -88,9 +91,13 @@ export class FiltersState {
     return state.glassFilter;
   }
 
+  @Selector()
+  static getCurrListView(state: FilterState) {
+    return state.currListView;
+  }
+
   @Action(PopulateCategories)
   populateCategories(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService.getFilter('c').subscribe((categories) => {
       ctx.patchState({
         categoryList: categories.drinks,
@@ -100,7 +107,6 @@ export class FiltersState {
 
   @Action(PopulateIngredients)
   populateIngredients(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService.getFilter('i').subscribe((ingredients) => {
       ctx.patchState({
         ingredientList: ingredients.drinks,
@@ -110,7 +116,6 @@ export class FiltersState {
 
   @Action(PopulateAlcoholics)
   populateAlcoholics(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService.getFilter('a').subscribe((alcoholics) => {
       ctx.patchState({
         alcoholicList: alcoholics.drinks,
@@ -120,7 +125,6 @@ export class FiltersState {
 
   @Action(PopulateGlasses)
   populateGlasses(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     this.cocktailService.getFilter('g').subscribe((glasses) => {
       ctx.patchState({
         glassList: glasses.drinks,
@@ -130,61 +134,63 @@ export class FiltersState {
 
   @Action(SetSearchTerm)
   setSearchTerm(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     ctx.patchState({
       searchTerm: payload.term,
-      categoryFilter: '',
-      ingredientFilter: '',
-      alcoholicFilter: '',
-      glassFilter: '',
+      categoryFilter: null,
+      ingredientFilter: null,
+      alcoholicFilter: null,
+      glassFilter: null,
     });
   }
 
   @Action(SetCategoryFilter)
   setCategoryFilter(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     ctx.patchState({
-      searchTerm: '',
+      searchTerm: null,
       categoryFilter: payload.term,
-      ingredientFilter: '',
-      alcoholicFilter: '',
-      glassFilter: '',
+      ingredientFilter: null,
+      alcoholicFilter: null,
+      glassFilter: null,
     });
   }
 
   @Action(SetIngredientFilter)
   setIngredientFilter(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     ctx.patchState({
-      searchTerm: '',
-      categoryFilter: '',
+      searchTerm: null,
+      categoryFilter: null,
       ingredientFilter: payload.term,
-      alcoholicFilter: '',
-      glassFilter: '',
+      alcoholicFilter: null,
+      glassFilter: null,
     });
   }
 
   @Action(SetAlcoholicFilter)
   setAlcoholicFilter(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     ctx.patchState({
-      searchTerm: '',
-      categoryFilter: '',
-      ingredientFilter: '',
+      searchTerm: null,
+      categoryFilter: null,
+      ingredientFilter: null,
       alcoholicFilter: payload.term,
-      glassFilter: '',
+      glassFilter: null,
     });
   }
 
   @Action(SetGlassFilter)
   setGlassFilter(ctx: StateContext<FilterState>, payload: any) {
-    const state = ctx.getState();
     ctx.patchState({
-      searchTerm: '',
-      categoryFilter: '',
-      ingredientFilter: '',
-      alcoholicFilter: '',
+      searchTerm: null,
+      categoryFilter: null,
+      ingredientFilter: null,
+      alcoholicFilter: null,
       glassFilter: payload.term,
+    });
+  }
+
+  @Action(SetCurrListView)
+  setCurrListView(ctx: StateContext<FilterState>, payload: any) {
+    ctx.patchState({
+      currListView: payload.view,
     });
   }
 }

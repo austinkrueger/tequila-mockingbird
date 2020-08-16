@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px auto 50px auto;
 }
 
 .cocktail-list {
@@ -11,7 +12,37 @@
   flex-wrap: wrap;
   width: 100vw;
   .cocktail-card {
-    width: 200px;
+    width: 300px;
     margin: 10px;
+
+    img {
+      object-fit: cover;
+      max-height: 200px;
+    }
   }
+}
+
+.paginate-container {
+  padding: 10px 50px;
+  margin: 0 auto;
+  max-width: 80vw;
+  display: flex;
+}
+
+.table-container {
+  margin: 10px auto 50px auto;
+  padding: 10px 50px;
+  max-width: 80vw;
+  .mat-table {
+    width: 100%;
+
+    img {
+      max-width: 50px;
+    }
+  }
+}
+
+.empty-list {
+  display: flex;
+  justify-content: center;
 }

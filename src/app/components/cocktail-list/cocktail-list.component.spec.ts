@@ -9,6 +9,7 @@ import { By } from '@angular/platform-browser';
 import { Populate } from 'src/app/state/cocktail.actions';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { of } from 'rxjs';
+import { FiltersState } from 'src/app/state/filter.state';
 
 describe('CocktailListComponent', () => {
   let component: CocktailListComponent;
@@ -22,7 +23,7 @@ describe('CocktailListComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        NgxsModule.forRoot([CocktailsState]),
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
       ],
     }).compileComponents();
 
@@ -43,13 +44,13 @@ describe('CocktailListComponent', () => {
   it('should have a previous button', () => {
     const element: HTMLElement = fixture.nativeElement;
     const button = element.querySelector('.previous');
-    expect(button.innerHTML.trim()).toEqual('Previous');
+    expect(button.innerHTML.trim()).toContain('</mat-icon>');
   });
 
   it('should have a next button', () => {
     const element: HTMLElement = fixture.nativeElement;
     const button = element.querySelector('.next');
-    expect(button.innerHTML.trim()).toEqual('Next');
+    expect(button.innerHTML.trim()).toContain('</mat-icon>');
   });
 
   it('should paginate forward', () => {
@@ -60,10 +61,22 @@ describe('CocktailListComponent', () => {
     expect(component.nextPage).toHaveBeenCalled();
   });
 
+  it('should initialize with previous button as disabled', () => {
+    fixture.detectChanges();
+    const button = fixture.debugElement.nativeElement.querySelector(
+      '.previous'
+    );
+    expect(button.disabled).toBeTruthy();
+  });
+
   it('should paginate backward', () => {
     spyOn(component, 'previousPage');
-    const button = fixture.debugElement.query(By.css('.previous'))
-      .nativeElement;
+    component.currIdx = 1;
+    fixture.detectChanges();
+    const button = fixture.debugElement.nativeElement.querySelector(
+      '.previous'
+    );
+    expect(button.disabled).toBeFalsy();
     button.click();
     fixture.detectChanges();
     expect(component.previousPage).toHaveBeenCalled();

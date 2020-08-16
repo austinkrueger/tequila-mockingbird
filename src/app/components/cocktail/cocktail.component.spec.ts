@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgxsModule } from '@ngxs/store';
 import { CocktailsState } from 'src/app/state/cocktail.state';
 import { By } from '@angular/platform-browser';
+import { FiltersState } from 'src/app/state/filter.state';
 
 describe('CocktailComponent', () => {
   let component: CocktailComponent;
@@ -17,7 +18,7 @@ describe('CocktailComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        NgxsModule.forRoot([CocktailsState]),
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
       ],
     }).compileComponents();
   }));

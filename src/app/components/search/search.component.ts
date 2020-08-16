@@ -37,7 +37,9 @@ export class SearchComponent implements OnInit {
   @Select(FiltersState.getAlcoholics) alcoholicList$: Observable<any[]>;
   @Select(FiltersState.getGlasses) glassList$: Observable<any[]>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
     this.searchTerm.setValue(
       this.store.selectSnapshot(FiltersState.getSearchTerm)
     );
@@ -53,9 +55,6 @@ export class SearchComponent implements OnInit {
     this.glassSelection.setValue(
       this.store.selectSnapshot(FiltersState.getGlassFilter)
     );
-  }
-
-  ngOnInit(): void {
     this.store.dispatch(new PopulateCategories({}));
     this.store.dispatch(new PopulateIngredients({}));
     this.store.dispatch(new PopulateAlcoholics({}));
@@ -116,8 +115,8 @@ export class SearchComponent implements OnInit {
   }
 
   clearAllFilters(): void {
-    this.store.dispatch(new Search(''));
-    this.store.dispatch(new SetSearchTerm(''));
+    this.store.dispatch(new Search(null));
+    this.store.dispatch(new SetSearchTerm(null));
     this.store.dispatch(new Populate({ reset: true }));
     this.searchTerm.reset();
     this.categorySelection.reset();
