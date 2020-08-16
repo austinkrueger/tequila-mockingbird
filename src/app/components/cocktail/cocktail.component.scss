@@ -50,3 +50,25 @@ img.detail-img {
     padding: 0 15px;
   }
 }
+
+.extra-info {
+  display: block;
+}
+
+.extra-info-small {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .cocktail-info {
+    flex-direction: column;
+  }
+
+  .extra-info {
+    display: none;
+  }
+
+  .extra-info-small {
+    display: block;
+  }
+}

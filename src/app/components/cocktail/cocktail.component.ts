@@ -6,6 +6,7 @@ import { Cocktail } from 'src/app/models/cocktail.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { SetCurrent } from 'src/app/state/cocktail.actions';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cocktail',
@@ -22,21 +23,23 @@ export class CocktailComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     let cocktailDataSub = new Subscription();
-    const cocktailSub: Subscription = this.cocktail$.subscribe((cocktail) => {
-      if (cocktail.idDrink === '' || !cocktail.strCategory) {
-        const cocktailId = this.activatedRoute.snapshot.params.id
-          ? this.activatedRoute.snapshot.params.id
-          : undefined;
-        if (cocktailId) {
-          cocktailDataSub = this.cocktailService
-            .getCocktailDetails(cocktailId)
-            .subscribe((cocktailData) => {
-              this.store.dispatch(new SetCurrent(cocktailData.drinks[0]));
-            });
+    const cocktailSub: Subscription = this.cocktail$
+      .pipe(take(1))
+      .subscribe((cocktail) => {
+        if (cocktail.idDrink === '' || !cocktail.strCategory) {
+          const cocktailId = this.activatedRoute.snapshot.params.id
+            ? this.activatedRoute.snapshot.params.id
+            : undefined;
+          if (cocktailId) {
+            cocktailDataSub = this.cocktailService
+              .getCocktailDetails(cocktailId)
+              .subscribe((cocktailData) => {
+                this.store.dispatch(new SetCurrent(cocktailData.drinks[0]));
+              });
+          }
+          this._subscriptions.add(cocktailDataSub);
         }
-        this._subscriptions.add(cocktailDataSub);
-      }
-    });
+      });
     this._subscriptions.add(cocktailSub);
   }
 
