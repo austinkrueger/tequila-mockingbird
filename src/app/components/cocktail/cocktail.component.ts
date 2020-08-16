@@ -5,7 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Cocktail } from 'src/app/models/cocktail.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CocktailService } from 'src/app/services/cocktail.service';
-import { SetCurrent } from 'src/app/state/cocktail.actions';
+import { SetCurrent } from 'src/app/state/cocktail.action';
 import { take } from 'rxjs/operators';
 
 @Component({

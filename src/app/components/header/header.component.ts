@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { Store } from '@ngxs/store';
-import { SetCurrent } from 'src/app/state/cocktail.actions';
+import { SetCurrent } from 'src/app/state/cocktail.action';
 
 @Component({
   selector: 'app-header',

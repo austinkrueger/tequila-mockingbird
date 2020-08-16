@@ -34,6 +34,7 @@
           ngDefaultControl
           (selectionChange)="filterCategeory($event)"
           [formControl]="categorySelection"
+          class="category-dropdown"
         >
           <mat-option
             *ngFor="let category of categoryList$ | async"
@@ -51,6 +52,7 @@
           ngDefaultControl
           (selectionChange)="filterIngredient($event)"
           [formControl]="ingredientSelection"
+          class="ingredient-dropdown"
         >
           <mat-option
             *ngFor="let ingredient of ingredientList$ | async"
@@ -68,6 +70,7 @@
           ngDefaultControl
           (selectionChange)="filterAlcoholic($event)"
           [formControl]="alcoholicSelection"
+          class="alcoholic-dropdown"
         >
           <mat-option
             *ngFor="let alcoholic of alcoholicList$ | async"
@@ -85,6 +88,7 @@
           ngDefaultControl
           (selectionChange)="filterGlass($event)"
           [formControl]="glassSelection"
+          class="glass-dropdown"
         >
           <mat-option
             *ngFor="let glass of glassList$ | async"

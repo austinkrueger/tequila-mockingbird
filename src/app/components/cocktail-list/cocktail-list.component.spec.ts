@@ -6,7 +6,7 @@ import { CocktailsState } from 'src/app/state/cocktail.state';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { By } from '@angular/platform-browser';
-import { Populate } from 'src/app/state/cocktail.actions';
+import { Populate } from 'src/app/state/cocktail.action';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { of } from 'rxjs';
 import { FiltersState } from 'src/app/state/filter.state';

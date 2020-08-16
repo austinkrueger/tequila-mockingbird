@@ -6,6 +6,9 @@ import {
 } from '@angular/common/http/testing';
 import { HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
 import { CocktailService } from './cocktail.service';
+import { NgxsModule } from '@ngxs/store';
+import { CocktailsState } from '../state/cocktail.state';
+import { FiltersState } from '../state/filter.state';
 
 describe('HttpErrorInterceptor', () => {
   let httpErrorInterceptor: HttpErrorInterceptor;
@@ -15,7 +18,10 @@ describe('HttpErrorInterceptor', () => {
 
   beforeEach(async () =>
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
+      ],
       providers: [
         CocktailService,
         {

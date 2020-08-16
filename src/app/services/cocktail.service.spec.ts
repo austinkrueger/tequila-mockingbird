@@ -6,6 +6,9 @@ import {
 import { HttpErrorResponse, HttpHeaderResponse } from '@angular/common/http';
 
 import { CocktailService } from './cocktail.service';
+import { NgxsModule } from '@ngxs/store';
+import { CocktailsState } from '../state/cocktail.state';
+import { FiltersState } from '../state/filter.state';
 
 describe('CocktailService test using HttpClientTestingModule', () => {
   let httpTestingController: HttpTestingController;
@@ -14,11 +17,18 @@ describe('CocktailService test using HttpClientTestingModule', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [
+        HttpClientTestingModule,
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
+      ],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(CocktailService);
+  });
+
+  it('should return the length of possible pages', () => {
+    expect(service.getPagesLength()).toEqual(36);
   });
 
   it('should return a list from paginateCocktails', () => {
@@ -78,6 +88,28 @@ describe('CocktailService test using HttpClientTestingModule', () => {
     const req = httpTestingController.expectOne(
       `${baseUri}/list.php?${queryCat}=list`
     );
+
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(testData);
+
+    httpTestingController.verify();
+  });
+
+  it('should reset the search to letter a if no term is included', () => {
+    const testData: any = [{ id: '123', name: 'A drink' }];
+
+    service.searchCocktails(null).subscribe(
+      (data) => {
+        expect(data).toEqual(testData);
+      },
+      (error: HttpErrorResponse) =>
+        fail(
+          'Should have returned list of drinks that were on the first page (a)'
+        )
+    );
+
+    const req = httpTestingController.expectOne(`${baseUri}/search.php?f=a`);
 
     expect(req.request.method).toEqual('GET');
 

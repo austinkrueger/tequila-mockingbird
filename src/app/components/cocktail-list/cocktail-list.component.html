@@ -16,6 +16,7 @@
     class="next"
     matTooltip="Next Page"
     (click)="nextPage()"
+    [disabled]="currIdx === pagesLength - 1"
   >
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>

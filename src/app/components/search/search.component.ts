@@ -18,7 +18,7 @@ import {
   PopulateWithFilter,
   Search,
   Populate,
-} from 'src/app/state/cocktail.actions';
+} from 'src/app/state/cocktail.action';
 
 @Component({
   selector: 'app-search',

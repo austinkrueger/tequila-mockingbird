@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { Search } from 'src/app/state/cocktail.actions';
+import { Search } from 'src/app/state/cocktail.action';
 import { Router } from '@angular/router';
 import { SetSearchTerm } from 'src/app/state/filter.action';
 

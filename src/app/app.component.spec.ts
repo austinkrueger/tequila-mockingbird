@@ -1,11 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NgxsModule } from '@ngxs/store';
+import { CocktailsState } from './state/cocktail.state';
+import { FiltersState } from './state/filter.state';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        NgxsModule.forRoot([CocktailsState, FiltersState]),
+      ],
       declarations: [AppComponent],
     }).compileComponents();
   }));

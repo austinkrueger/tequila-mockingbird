@@ -6,7 +6,7 @@ import {
   PopulateWithFilter,
   Paginate,
   Search,
-} from './cocktail.actions';
+} from './cocktail.action';
 import { Cocktail } from '../models/cocktail.model';
 import { CocktailService } from '../services/cocktail.service';
 
@@ -103,7 +103,7 @@ export class CocktailsState {
   @Action(SetCurrent)
   setCurrent(ctx: StateContext<CocktailState>, cocktail: Cocktail) {
     ctx.patchState({
-      currentCocktail: cocktail,
+      currentCocktail: cocktail.cocktail,
     });
   }
 }

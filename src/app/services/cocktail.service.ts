@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Paginate } from '../state/cocktail.action';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +35,7 @@ export class CocktailService {
     'w',
     'x',
     'y',
-    '0',
+    'z',
     '1',
     '2',
     '3',
@@ -46,7 +48,11 @@ export class CocktailService {
     '0',
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store) {}
+
+  getPagesLength(): number {
+    return this.pages.length;
+  }
 
   getCocktailDetails(cocktailId: string): Observable<any> {
     return this.http.get(`${this.baseUri}/lookup.php?i=${cocktailId}`);

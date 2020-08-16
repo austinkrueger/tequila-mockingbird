@@ -47,13 +47,30 @@ describe('SearchComponent', () => {
     expect(button.innerHTML.trim()).toEqual('Search');
   });
 
-  it('should have a category dropdown', () => {});
+  // these are a bit lacking, grabbing data from state
+  it('should have a category dropdown', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const categoryDropdown = element.querySelector('.category-dropdown');
+    expect(categoryDropdown.localName).toEqual('mat-select');
+  });
 
-  it('should have an ingredient dropdown', () => {});
+  it('should have an ingredient dropdown', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const ingredientDropdown = element.querySelector('.ingredient-dropdown');
+    expect(ingredientDropdown.localName).toEqual('mat-select');
+  });
 
-  it('should have an alcoholic dropdown', () => {});
+  it('should have an alcoholic dropdown', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const alcoholicDropdown = element.querySelector('.alcoholic-dropdown');
+    expect(alcoholicDropdown.localName).toEqual('mat-select');
+  });
 
-  it('should have a glass dropdown', () => {});
+  it('should have a glass dropdown', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const glassDropdown = element.querySelector('.glass-dropdown');
+    expect(glassDropdown.localName).toEqual('mat-select');
+  });
 
   it('should search for cocktails by name', () => {
     spyOn(component, 'searchCocktails');

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { Store, Select } from '@ngxs/store';
-import { Populate, SetCurrent, Paginate } from 'src/app/state/cocktail.actions';
+import { Populate, SetCurrent, Paginate } from 'src/app/state/cocktail.action';
 import { Observable } from 'rxjs';
 import { Cocktail } from 'src/app/models/cocktail.model';
 import { CocktailsState } from 'src/app/state/cocktail.state';
@@ -18,14 +18,20 @@ export class CocktailListComponent implements OnInit {
   @Select(CocktailsState.getCocktails) cocktailList$: Observable<Cocktail[]>;
   displayedColumns: string[] = ['img', 'name', 'category', 'alcoholic', 'view'];
   currIdx = 0;
+  pagesLength;
   @Select(FiltersState.getCurrListView) currListView$: Observable<string>;
 
-  constructor(private store: Store, private router: Router) {
+  constructor(
+    private store: Store,
+    private router: Router,
+    private cocktailService: CocktailService
+  ) {
     this.currIdx = this.store.selectSnapshot(CocktailsState.getCurrentIndex);
   }
 
   ngOnInit(): void {
     this.store.dispatch(new Populate({}));
+    this.pagesLength = this.cocktailService.getPagesLength();
   }
 
   viewRecipe(cocktail: Cocktail): void {
