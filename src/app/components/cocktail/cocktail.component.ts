@@ -6,7 +6,7 @@ import { Cocktail } from 'src/app/models/cocktail.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CocktailService } from 'src/app/services/cocktail.service';
 import { SetCurrent } from 'src/app/state/cocktail.action';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cocktail',

@@ -1,6 +1,6 @@
 <div class="cocktail-container">
   <ng-container *ngIf="cocktail$ | async as drink">
-    <ng-container *ngIf="drink.cocktail">
+    <ng-container *ngIf="drink">
       <mat-card class="cocktail">
         <div class="cocktail-actions">
           <button mat-button (click)="returnToList()">
@@ -11,51 +11,49 @@
           <div class="cocktail-image">
             <img
               class="detail-img"
-              [src]="drink.cocktail.strDrinkThumb"
-              [alt]="drink.cocktail.strDrink"
+              [src]="drink.strDrinkThumb"
+              [alt]="drink.strDrink"
             />
             <div class="extra-info">
               <p>
-                <b>Type: {{ drink.cocktail.strAlcoholic }}</b>
+                <b>Type: {{ drink.strAlcoholic }}</b>
               </p>
               <p>
-                <b>Category: {{ drink.cocktail.strCategory }}</b>
+                <b>Category: {{ drink.strCategory }}</b>
               </p>
             </div>
           </div>
           <div class="cocktail-copy">
-            <h1 class="detail-name">{{ drink.cocktail.strDrink }}</h1>
+            <h1 class="detail-name">{{ drink.strDrink }}</h1>
             <hr />
             <div class="extra-info-small">
               <p>
-                <b>Type: {{ drink.cocktail.strAlcoholic }}</b>
+                <b>Type: {{ drink.strAlcoholic }}</b>
               </p>
               <p>
-                <b>Category: {{ drink.cocktail.strCategory }}</b>
+                <b>Category: {{ drink.strCategory }}</b>
               </p>
             </div>
             <div class="ingredients">
               <h2 class="subhead">Ingredients</h2>
               <div class="ingredient-container">
                 <div class="ingredient-list">
-                  <span
-                    *ngFor="let ingredient of getIngredients(drink.cocktail)"
-                    >{{ ingredient }}</span
-                  >
+                  <span *ngFor="let ingredient of getIngredients(drink)">{{
+                    ingredient
+                  }}</span>
                 </div>
                 <div class="measurement-list">
-                  <span
-                    *ngFor="let measurement of getMeasurements(drink.cocktail)"
-                    >{{ measurement }}</span
-                  >
+                  <span *ngFor="let measurement of getMeasurements(drink)">{{
+                    measurement
+                  }}</span>
                 </div>
               </div>
             </div>
             <div class="recipe">
               <h2 class="subhead">Instructions</h2>
-              <p>{{ drink.cocktail.strInstructions }}</p>
+              <p>{{ drink.strInstructions }}</p>
               <h2 class="subhead">Serving</h2>
-              <p>Serve in a {{ drink.cocktail.strGlass }}</p>
+              <p>Serve in a {{ drink.strGlass }}</p>
             </div>
           </div>
         </div>
